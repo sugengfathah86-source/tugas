@@ -1,19 +1,16 @@
 <?php
 
-require_once "Downloader.php";
-
 $start = microtime(true);
 
-$files = [
-    new Downloader("File A", 3),
-    new Downloader("File B", 1),
-    new Downloader("File C", 2)
-];
-
-foreach ($files as $file) {
-    $file->run();
+function download($name, $time) {
+    echo "$name mulai...\n";
+    sleep($time);
+    echo "$name selesai!\n";
 }
 
-$end = microtime(true);
+download("File A", 3);
+download("File B", 2);
+download("File C", 1);
 
-echo "Total waktu tanpa multithreading: " . round($end - $start, 3) . " detik\n";
+$end = microtime(true);
+echo "\nWaktu total (tanpa thread): " . round($end - $start, 3) . " detik";
